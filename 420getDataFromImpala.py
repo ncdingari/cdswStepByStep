@@ -4,14 +4,15 @@
 # it is on my to-do list to fix 
 #
 # reset stuff                                               
-#!pip uninstall -y sasl
-#!pip uninstall -y impyla
-#!pip uninstall  -y thrift
-#!pip uninstall -y thrift_sasl/
+!pip uninstall -y sasl
+!pip uninstall -y impyla
+!pip uninstall  -y thrift
+!pip uninstall -y thrift_sasl/
 
 # set up packages we need
 !git clone https://github.com/cloudera/thrift_sasl
 !pip install -e thrift_sasl/
+#!pip install thrift_sasl==0.2.1
 !pip install thrift==0.9.3
 !pip install impyla
 !pip show thrift
@@ -23,7 +24,7 @@
 
 # here is the SQL you have been waiting for
 from impala.dbapi import connect
-conn = connect(host='10.142.0.2', port=21050)
+conn = connect(host='10.0.0.41', port=21050)
 #   172.28.210.3
 cursor = conn.cursor()
 cursor.execute('SELECT * FROM sample_07p LIMIT 5') 
@@ -41,4 +42,4 @@ def plotit():
  plt.show()
 plotit()
 # leave next line to generate an error, illustrate typing at commnad prompt
-print "done"
+#print "done"

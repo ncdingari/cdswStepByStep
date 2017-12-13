@@ -8,15 +8,13 @@ from pyspark.sql import *
 myspark = SparkSession\
     .builder\
     .config("spark.executor.instances", 3 ) \
-    .config("spark.executor.memory", "5g") \
+    .config("spark.executor.memory", "3g") \
     .config("spark.executor.cores", 2) \
     .config("spark.dynamicAllocation.maxExecutors", 10) \
     .config("spark.scheduler.listenerbus.eventqueue.size", 10000) \
     .config("spark.sql.parquet.compression.codec", "snappy") \
     .appName("Sample_07_kmeans") \
     .getOrCreate()
-
-
 
 sc = myspark.sparkContext
 
@@ -37,7 +35,7 @@ print  ( dfpfc )
 # create a table name to use for queries
 dfpfc.createOrReplaceTempView("census07")
 # run a query
-fcout=myspark.sql('select * from census07 where salary > 100000')
+fcout=myspark.sql('select * from census07')
 fcout.show(5)
 # create a dataframe with valid rows
 mydf=myspark.sql('select code as txtlabel, salary, total_emp from sample_07 where total_emp > 0 and total_emp< 1000000 and salary >0 and salary<500000' )
@@ -69,8 +67,11 @@ from pyspark.ml.clustering import KMeans
 # try 10 different centers 
 #
 #
-#
-kmeans = KMeans().setK(15).setSeed(1)
+#  we will start with 10 cluster centers 
+#  run the model and then come back here, change the 10 to 15
+# highlight from this line to the bottom and select "run selected lines"
+# it will then see the cluster in the upper right hand corner of the scatter plot
+kmeans = KMeans().setK(10).setSeed(1)
 # run the model
 model = kmeans.fit(output)
 
@@ -97,4 +98,3 @@ def plotit(numpts):
  plt.show()
       
 plotit(400)
-

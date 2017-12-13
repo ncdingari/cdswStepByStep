@@ -8,7 +8,7 @@ from pyspark.sql import *
 myspark = SparkSession\
     .builder\
     .config("spark.executor.instances", 3 ) \
-    .config("spark.executor.memory", "5g") \
+    .config("spark.executor.memory", "3g") \
     .config("spark.executor.cores", 2) \
     .config("spark.scheduler.listenerbus.eventqueue.size", 10000) \
     .config("spark.sql.parquet.compression.codec", "snappy") \
@@ -22,14 +22,6 @@ print ( myspark)
 myspark.sql("SET spark.sql.parquet.binaryAsString=true")
 from pyspark.sql import HiveContext
 hive_context = HiveContext(sc)
-#myview = hive_context.table("default.sample_07")
-#myview = hive_context.table("default.sampleupper")
 myview = hive_context.table("default.sample_07p")
 
 myview.show(5)
-# spark2.2 supports hive permanent functions
-# https://issues.apache.org/jira/browse/SPARK-20033
-# in impala-shell:
-# create view sampview as select * from sample_07;
-myview2 = hive_context.table("default.sampview")
-myview2.show(5)
