@@ -4,13 +4,9 @@ Please take a quick look at
  LDAP settings screen - you can only see this if you have admin rights... please don't change anything!
  The Dashboard meters showing resource utilization
  Left panel: projects, jobs, sessions, settings, admin
- 
-You can refresh the files in this project by opening the "terminal access" and doing:
-git pull    
-at the command line
- 
+  
 You are now ready to run different examples. It is easiset to run
-in sequential order.  
+in sequential order.
 The first example: 200_Basic_HelloR.r  
 This is a simple hello world in R
  Open the file
@@ -21,6 +17,10 @@ This is a simple hello world in R
  Publish your session with the link in the upper right hand corner.  The session
   publication is a great teaming feature
  Check dashboard for utilization
+
+You can refresh the files in this project by opening the "terminal access" and doing:
+git pull    
+at the command line
 
 Run more of the examples... when you run the python examples you'll need to create a 
  python session
